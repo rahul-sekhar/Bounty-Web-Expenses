@@ -31,7 +31,6 @@ test('view people', function(assert) {
   visit('/');
 
   andThen(function() {
-    assert.equal(currentPath(), '/');
     assert.equal(find('ul.people li').length, 3);
     assert.equal(find('ul.people li:eq(0)').text(), 'Prasanna');
     assert.equal(find('ul.people li:eq(1)').text(), 'Pierre');
