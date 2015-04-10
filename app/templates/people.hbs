@@ -1,0 +1,8 @@
+<ul class="people">
+  {{#each person in model}}
+    <li>{{person.name}}</li>
+  {{/each}}
+</ul>
+
+{{input class="name" value=name placeholder="Name"}}
+<button {{action 'addPerson'}} class="submit">Add</button>
