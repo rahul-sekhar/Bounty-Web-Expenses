@@ -27,25 +27,37 @@ module('Acceptance: PeopleManage', {
   }
 });
 
-test('view people', function(assert) {
+test('manage the list of people', function(assert) {
+
+  // Visit the root page
   visit('/');
 
+  // Check for seeded people
   andThen(function() {
     assert.equal(find('ul.people li').length, 3);
-    assert.equal(find('ul.people li:eq(0)').text(), 'Prasanna');
-    assert.equal(find('ul.people li:eq(1)').text(), 'Pierre');
-    assert.equal(find('ul.people li:eq(2)').text(), 'Olaf');
+    assert.equal(find('ul.people li:eq(0) .name').text(), 'Prasanna');
+    assert.equal(find('ul.people li:eq(1) .name').text(), 'Pierre');
+    assert.equal(find('ul.people li:eq(2) .name').text(), 'Olaf');
   });
-});
 
-
-test('create a person', function(assert) {
-  visit('/');
+  // Create a person
   fillIn('input.name', 'Ashish');
   click('button.submit');
 
+  // Check if the person has been added
   andThen(function() {
     assert.equal(find('ul.people li').length, 4);
-    assert.equal(find('ul.people li:eq(3)').text(), 'Ashish');
+    assert.equal(find('ul.people li:eq(3) .name').text(), 'Ashish');
+  });
+
+  // Delete a person
+  click('ul.people li:contains(Pierre) .delete');
+
+  // Confirm deletion
+  andThen(function() {
+    assert.equal(find('ul.people li').length, 3);
+    assert.equal(find('ul.people li:eq(0) .name').text(), 'Prasanna');
+    assert.equal(find('ul.people li:eq(1) .name').text(), 'Olaf');
+    assert.equal(find('ul.people li:eq(2) .name').text(), 'Ashish');
   });
 });

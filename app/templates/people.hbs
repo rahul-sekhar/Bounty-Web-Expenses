@@ -1,6 +1,6 @@
 <ul class="people">
-  {{#each model}}
-    {{#listed-person name=name}}
+  {{#each person in model}}
+    {{#listed-person person=person}}
     {{/listed-person}}
   {{/each}}
 </ul>
