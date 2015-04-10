@@ -4,6 +4,8 @@ module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'bounty-web-expenses',
     environment: environment,
+    contentSecurityPolicy: { 'connect-src': "'self' wss://*.firebaseio.com" },
+    firebase: 'https://crackling-fire-8826.firebaseio.com/',
     baseURL: '/',
     locationType: 'auto',
     EmberENV: {
