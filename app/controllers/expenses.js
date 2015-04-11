@@ -1,6 +1,10 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
+  participants: function () {
+    return(this.get('people').content.copy());
+  }.property('people.[]'),
+
   actions: {
     addExpense: function () {
 
@@ -15,14 +19,15 @@ export default Ember.Controller.extend({
       });
 
       // Add all people as participants
-      newExpense.get('participants').pushObjects(this.get('people'));
+      newExpense.get('participants').pushObjects(this.get('participants'));
 
       // Save the expense
       newExpense.save();
 
       // Clear inputs
       this.setProperties({
-        'amount': ''
+        'amount': '',
+        'participants': this.get('people').content.copy()
       });
     }
   }

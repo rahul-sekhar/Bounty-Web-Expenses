@@ -24,6 +24,11 @@
         }}
       </div>
 
+      <div class="form-group">
+        <label for="participants">Participants</label>
+        {{multiselect-checkboxes options=people labelProperty='name' selection=participants}}
+      </div>
+
       <button {{action 'addExpense'}} class="submit btn btn-primary" type="submit">Add expense</button>
     </form>
   </div>
