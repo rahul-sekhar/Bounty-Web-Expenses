@@ -5,8 +5,17 @@ export default Ember.Controller.extend({
     return(this.get('people').content.copy());
   }.property('people.[]'),
 
+  invalidAmount: false,
+
   actions: {
     addExpense: function () {
+
+      // Ensure that amount is a positive integer
+      var amount = parseInt(this.get('amount'), 10);
+      if (!(amount > 0)) {
+        this.set('invalidAmount', true);
+        return;
+      }
 
       // Load the paidBy person model by id
       var paidByModel = this.get('people')
@@ -14,7 +23,7 @@ export default Ember.Controller.extend({
 
       // Create a new expense model
       let newExpense = this.store.createRecord('expense', {
-        amount: this.get('amount'),
+        amount: amount,
         paidBy: paidByModel,
       });
 
@@ -26,8 +35,9 @@ export default Ember.Controller.extend({
 
       // Clear inputs
       this.setProperties({
-        'amount': '',
-        'participants': this.get('people').content.copy()
+        invalidAmount: false,
+        amount: '',
+        participants: this.get('people').content.copy()
       });
     }
   }

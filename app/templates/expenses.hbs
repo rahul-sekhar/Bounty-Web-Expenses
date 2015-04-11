@@ -4,7 +4,7 @@
   </div>
   <div class="panel-body">
     <form>
-      <div class="form-group">
+      <div {{bind-attr class=':form-group invalidAmount:has-error'}}>
         <label for="amount" class="sr-only">Amount</label>
         <div class="input-group">
           <div class="input-group-addon">Rs.</div>
