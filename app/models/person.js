@@ -1,5 +1,7 @@
 import DS from 'ember-data';
 
+// import deletesDependentRelationships from '../mixins/deletes-dependent-relationships'
+
 export default DS.Model.extend({
   name: DS.attr('string'),
 
@@ -21,6 +23,25 @@ export default DS.Model.extend({
       balance -= parseInt(expense.get('amount'), 10) / expense.get('participants').length;
     });
 
-    return balance;
-  }.property('expensesPaid.@each.amount,expensesOwed.@each.amount')
+    // Return the balance, formatted to two decimal places
+    return balance.toFixed(2);
+  }.property('expensesPaid.@each.amount,expensesOwed.@each.amount'),
+
+  // Handle dependencies on destruction
+  deleteRecord: function () {
+    // Delete any expenses paid by this person
+    this.get('expensesPaid').forEach(function (item) {
+      item.deleteRecord();
+      item.save();
+    });
+
+    // Remove this person as a participant from all expenses
+    this.get('expensesOwed').forEach(function (item) {
+      item.get('participants').removeObject(this);
+      item.save();
+    });
+
+    // Delete this record
+    this._super();
+  }
 });
