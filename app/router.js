@@ -7,5 +7,7 @@ var Router = Ember.Router.extend({
 
 export default Router.map(function() {
   this.route('people');
-  this.route('expenses', { path: '/' });
+  this.route('expenses', { path: '/' }, function () {
+    this.route('list');
+  });
 });

@@ -8,11 +8,16 @@ export default Ember.Controller.extend({
       var paidByModel = this.get('people')
         .findBy('id', this.get('paidBy'));
 
-      // Create and save a new expense model
+      // Create a new expense model
       let newExpense = this.store.createRecord('expense', {
         amount: this.get('amount'),
-        paidBy: paidByModel
+        paidBy: paidByModel,
       });
+
+      // Add all people as participants
+      newExpense.get('participants').pushObjects(this.get('people'));
+
+      // Save the expense
       newExpense.save();
 
       // Clear inputs

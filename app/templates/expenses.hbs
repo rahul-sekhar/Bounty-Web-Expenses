@@ -14,9 +14,7 @@
   <button {{action 'addExpense'}} class="submit" type="submit">Add</button>
 </form>
 
-<ul class="expenses">
-  {{#each expense in expenses}}
-    {{#listed-expense expense=expense}}
-    {{/listed-expense}}
-  {{/each}}
-</ul>
+{{#link-to "expenses"}}Summary{{/link-to}}
+{{#link-to "expenses.list"}}List{{/link-to}}
+
+{{outlet}}
