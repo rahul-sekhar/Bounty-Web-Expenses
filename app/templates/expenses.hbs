@@ -1,7 +1,21 @@
 <h2>Expenses</h2>
 
+<form>
+  {{input class="amount" value=amount placeholder="Amount"}}
+
+  <label for="paid-by">Paid by</label>
+  {{view 'select'
+    id='paid-by'
+    value=paidBy
+    content=people
+    optionValuePath="content.id"
+    optionLabelPath="content.name"
+  }}
+  <button {{action 'addExpense'}} class="submit" type="submit">Add</button>
+</form>
+
 <ul class="expenses">
-  {{#each expense in model}}
+  {{#each expense in expenses}}
     {{#listed-expense expense=expense}}
     {{/listed-expense}}
   {{/each}}

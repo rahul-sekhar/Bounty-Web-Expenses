@@ -47,4 +47,15 @@ test('manage expenses', function(assert) {
     assert.equal(find('ul.expenses li:eq(0)').text().trim(), 'Rs. 500, paid by Olaf');
     assert.equal(find('ul.expenses li:eq(1)').text().trim(), 'Rs. 750, paid by Prasanna');
   });
+
+  // Create an expense
+  fillIn('input.amount', 300);
+  fillIn('select#paid-by', 2);
+  click('button.submit');
+
+  // Check if the expense has been added
+  andThen(function() {
+    assert.equal(find('ul.expenses li').length, 3);
+    assert.equal(find('ul.expenses li:eq(2)').text().trim(), 'Rs. 300, paid by Pierre');
+  });
 });
