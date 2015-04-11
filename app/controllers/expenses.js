@@ -22,8 +22,7 @@ export default Ember.Controller.extend({
 
       // Clear inputs
       this.setProperties({
-        'amount': '',
-        'paidBy': ''
+        'amount': ''
       });
     }
   }
