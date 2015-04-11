@@ -1,6 +1,10 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
+  needs: 'application',
+
+  people: Ember.computed.alias('controllers.application.people'),
+
   participants: function () {
     return(this.get('people').content.copy());
   }.property('people.[]'),
@@ -25,6 +29,7 @@ export default Ember.Controller.extend({
       let newExpense = this.store.createRecord('expense', {
         amount: amount,
         paidBy: paidByModel,
+        createdAt: new Date().getTime()
       });
 
       // Add all people as participants

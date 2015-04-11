@@ -1,6 +1,10 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
+  needs: 'application',
+
+  people: Ember.computed.alias('controllers.application.people'),
+
   actions: {
     addPerson: function () {
       // Do nothing if name is blank

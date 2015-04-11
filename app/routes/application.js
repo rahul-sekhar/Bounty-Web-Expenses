@@ -4,7 +4,7 @@ export default Ember.Route.extend({
   model: function () {
     return Ember.RSVP.hash({
       expenses: this.store.find('expense'),
-      people: this.store.find('person'),
+      people: this.store.find('person')
     });
   },
 
