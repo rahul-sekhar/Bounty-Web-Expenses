@@ -3,8 +3,9 @@ import {
   test
 } from 'ember-qunit';
 
-moduleForModel('person', {
-  needs: ['model:expense']
+moduleForModel('expense', {
+  // Specify the other units that are required for this test.
+  needs: ['model:person']
 });
 
 test('it exists', function(assert) {

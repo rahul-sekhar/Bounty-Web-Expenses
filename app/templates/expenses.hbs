@@ -1,0 +1,8 @@
+<h2>Expenses</h2>
+
+<ul class="expenses">
+  {{#each expense in model}}
+    {{#listed-expense expense=expense}}
+    {{/listed-expense}}
+  {{/each}}
+</ul>

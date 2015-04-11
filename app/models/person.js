@@ -1,7 +1,6 @@
 import DS from 'ember-data';
 
-let Person = DS.Model.extend({
-  name: DS.attr('string')
+export default DS.Model.extend({
+  name: DS.attr('string'),
+  expensesPaid: DS.hasMany('expense', { async: true })
 });
-
-export default Person;
