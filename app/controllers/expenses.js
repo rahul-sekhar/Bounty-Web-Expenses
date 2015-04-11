@@ -38,6 +38,9 @@ export default Ember.Controller.extend({
       // Save the expense
       newExpense.save();
 
+      // Load the expenses list page
+      this.transitionToRoute('expenses.list');
+
       // Clear inputs
       this.setProperties({
         invalidAmount: false,
