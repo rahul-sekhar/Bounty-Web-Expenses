@@ -50,6 +50,15 @@ test('manage the list of people', function(assert) {
     assert.equal(find('ul.people li:eq(3) .name').text(), 'Ashish');
   });
 
+  // Try creating a person with no name
+  fillIn('input.name', '');
+  click('button.submit');
+
+  // Ensure no person has been added
+  andThen(function() {
+    assert.equal(find('ul.people li').length, 4);
+  });
+
   // Delete a person
   click('ul.people li:contains(Pierre) .delete');
 
