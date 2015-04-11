@@ -5,5 +5,7 @@
   {{/each}}
 </ul>
 
-{{input class="name" value=name placeholder="Name"}}
-<button {{action 'addPerson'}} class="submit">Add</button>
+<form>
+  {{input class="name" value=name placeholder="Name"}}
+  <button {{action 'addPerson'}} class="submit" type="submit">Add</button>
+</form>
