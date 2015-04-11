@@ -1,20 +1,40 @@
-<h2>Expenses</h2>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Add an expense</h3>
+  </div>
+  <div class="panel-body">
+    <form>
+      <div class="form-group">
+        <label for="amount" class="sr-only">Amount</label>
+        <div class="input-group">
+          <div class="input-group-addon">Rs.</div>
+          {{input type="number" id="amount" class="amount form-control" value=amount placeholder="Amount"}}
+        </div>
+      </div>
 
-<form>
-  {{input class="amount" value=amount placeholder="Amount"}}
+      <div class="form-group">
+        <label for="paid-by">Paid by</label>
+        {{view 'select'
+          class='form-control'
+          id='paid-by'
+          value=paidBy
+          content=people
+          optionValuePath="content.id"
+          optionLabelPath="content.name"
+        }}
+      </div>
 
-  <label for="paid-by">Paid by</label>
-  {{view 'select'
-    id='paid-by'
-    value=paidBy
-    content=people
-    optionValuePath="content.id"
-    optionLabelPath="content.name"
-  }}
-  <button {{action 'addExpense'}} class="submit" type="submit">Add</button>
-</form>
+      <button {{action 'addExpense'}} class="submit btn btn-primary" type="submit">Add expense</button>
+    </form>
+  </div>
+</div>
 
-{{#link-to "expenses"}}Summary{{/link-to}}
-{{#link-to "expenses.list"}}List{{/link-to}}
+
+<h2>Current status</h2>
+
+<ul class="nav nav-tabs">
+  {{#link-to 'expenses.summary' tagName='li'}}<a href="" {{bind-attr href='view.href'}}>Summary</a>{{/link-to}}
+  {{#link-to 'expenses.list' tagName='li'}}<a href="" {{bind-attr href='view.href'}}>List</a>{{/link-to}}
+</ul>
 
 {{outlet}}

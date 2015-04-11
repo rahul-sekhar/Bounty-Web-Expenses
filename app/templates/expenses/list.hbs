@@ -1,6 +1,15 @@
-<ul class="expenses">
-  {{#each expense in model.expenses}}
-    {{#listed-expense expense=expense}}
-    {{/listed-expense}}
-  {{/each}}
-</ul>
+<table class="table expenses table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>Paid by</th>
+      <th>Amount</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {{#each expense in model.expenses}}
+      {{#expense-row expense=expense}}
+      {{/expense-row}}
+    {{/each}}
+  </tbody>
+</table>

@@ -1,4 +1,12 @@
-{{#link-to 'expenses'}}Expenses{{/link-to}}
-{{#link-to 'people'}}Manage people{{/link-to}}
+<div class="container-fluid">
+  <h1>Expense manager</h1>
 
-{{outlet}}
+  <nav class="navbar navbar-default">
+    <ul class="nav navbar-nav">
+      {{#link-to 'expenses' tagName='li'}}<a href="" {{bind-attr href='view.href'}}>Home</a>{{/link-to}}
+      {{#link-to 'people' tagName='li'}}<a href="" {{bind-attr href='view.href'}}>Manage people</a>{{/link-to}}
+    </ul>
+  </nav>
+
+  {{outlet}}
+</div>

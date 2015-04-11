@@ -1,13 +1,25 @@
 <h2>People</h2>
 
-<ul class="people">
+<ul class="people list-group">
   {{#each person in model}}
-    {{#listed-person person=person}}
-    {{/listed-person}}
+    <li class="list-group-item">
+      {{#listed-person person=person}}{{/listed-person}}
+    </li>
   {{/each}}
 </ul>
 
-<form>
-  {{input class="name" value=name placeholder="Name"}}
-  <button {{action 'addPerson'}} class="submit" type="submit">Add</button>
-</form>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Add a person</h3>
+  </div>
+  <div class="panel-body">
+    <form>
+      <div class="form-group">
+        <label for="name" class="sr-only">Name</label>
+        {{input class="name form-control" id="name" type="text" value=name placeholder="Name"}}
+      </div>
+
+      <button {{action 'addPerson'}} class="submit btn btn-primary" type="submit">Add person</button>
+    </form>
+  </div>
+</div>

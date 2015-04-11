@@ -1,0 +1,17 @@
+<table class="table expenses table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>Person</th>
+      <th>Balance</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {{#each person in model.people}}
+      <tr>
+        <td>{{person.name}}</td>
+        <td>Rs. {{person.balance}}</td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
