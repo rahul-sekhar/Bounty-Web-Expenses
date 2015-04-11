@@ -29,8 +29,8 @@ module('Acceptance: PeopleManage', {
 
 test('manage the list of people', function(assert) {
 
-  // Visit the root page
-  visit('/');
+  // Visit the people page
+  visit('/people');
 
   // Check for seeded people
   andThen(function() {
