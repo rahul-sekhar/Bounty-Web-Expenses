@@ -28,13 +28,13 @@ export default DS.Model.extend({
   // Handle dependencies on destruction
   deleteRecord: function () {
     // Delete any expenses paid by this person
-    this.get('expensesPaid').forEach(function (item) {
+    this.get('expensesPaid').toArray().forEach(function (item) {
       item.deleteRecord();
       item.save();
     });
 
     // Remove this person as a participant from all expenses
-    this.get('expensesOwed').forEach(function (item) {
+    this.get('expensesOwed').toArray().forEach(function (item) {
       item.get('participants').removeObject(this);
       item.save();
     });

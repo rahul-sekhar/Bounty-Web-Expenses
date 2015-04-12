@@ -22,7 +22,7 @@ test('it renders', function(assert) {
   assert.equal(component._state, 'inDOM');
 });
 
-test('#participantNames', function (assert) {
+test('participantNames computed property', function (assert) {
   var component = this.subject();
 
   // Mock expense participants
@@ -38,7 +38,7 @@ test('#participantNames', function (assert) {
   assert.equal(component.get('participantNames'), 'Asha, Gayatri, Brigita');
 });
 
-test('#actions.deleteExpense', function (assert) {
+test('deleteExpense action', function (assert) {
   var component = this.subject();
 
   // Mock expense
@@ -48,7 +48,7 @@ test('#actions.deleteExpense', function (assert) {
   };
   component.set('expense', expense);
 
-  // Run the delete expense action
+  // Run the action
   component.send('deleteExpense');
 
   // It deletes the record

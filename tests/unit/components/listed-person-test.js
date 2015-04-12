@@ -19,3 +19,23 @@ test('it renders', function(assert) {
   this.render();
   assert.equal(component._state, 'inDOM');
 });
+
+test('deletePerson action', function (assert) {
+  var component = this.subject();
+
+  // Mock person
+  var person = {
+    deleteRecord: sinon.spy(),
+    save: sinon.spy()
+  };
+  component.set('person', person);
+
+  // Run the action
+  component.send('deletePerson');
+
+  // It deletes the record
+  assert.ok(person.deleteRecord.calledOnce);
+
+  // It saves the deletion on the server
+  assert.ok(person.save.calledOnce);
+});
