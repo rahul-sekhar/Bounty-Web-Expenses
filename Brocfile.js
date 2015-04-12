@@ -1,6 +1,7 @@
 /* global require, module */
 
-var EmberApp = require('ember-cli/lib/broccoli/ember-app');
+var EmberApp = require('ember-cli/lib/broccoli/ember-app'),
+  isProduction = EmberApp.env() === 'production';
 
 var app = new EmberApp();
 
@@ -17,6 +18,13 @@ var app = new EmberApp();
 // please specify an object with the list of modules as keys
 // along with the exports of each module as its value.
 
+// Include bower css file
 app.import('bower_components/bootstrap/dist/css/bootstrap.css');
+
+// Include sinon for testing
+if ( !isProduction ) {
+  app.import( app.bowerDirectory + '/sinonjs/sinon.js', { type: 'test' } );
+  app.import( app.bowerDirectory + '/sinon-qunit/lib/sinon-qunit.js', { type: 'test' } );
+}
 
 module.exports = app.toTree();
