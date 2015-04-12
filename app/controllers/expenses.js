@@ -8,8 +8,11 @@ export default Ember.Controller.extend({
   // Use an observer to modify the participants array when the list
   // of people is modified, and on initialise
   setParticipants: function () {
-    console.log('hai');
-    this.set('participants', this.get('people').content.copy());
+    let people = this.get('people');
+    if (!people) {
+      return;
+    }
+    this.set('participants', people.content.copy());
   }.observes('people.[]').on('init'),
 
   participants: [],
@@ -21,7 +24,7 @@ export default Ember.Controller.extend({
 
       // Ensure that amount is a positive integer
       var amount = parseInt(this.get('amount'), 10);
-      if (!(amount > 0)) {
+      if (amount <= 0 || isNaN(amount)) {
         this.set('invalidAmount', true);
         return;
       }

@@ -6,7 +6,11 @@ export default Ember.Component.extend({
   // Formats the list of participants to a comma separated list
   // of their names
   participantNames: function () {
-    return this.get('expense.participants').map(function (person) {
+    let participants = this.get('expense.participants');
+    if (!participants) {
+      return null;
+    }
+    return participants.map(function (person) {
       return person.get('name');
     }).join(', ');
   }.property('expense.participants.[]'),
