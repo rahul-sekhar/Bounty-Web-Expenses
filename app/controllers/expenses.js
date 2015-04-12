@@ -1,13 +1,18 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
+  // Alias the list of people from the parent controller
   needs: 'application',
-
   people: Ember.computed.alias('controllers.application.people'),
 
-  participants: function () {
-    return(this.get('people').content.copy());
-  }.property('people.[]'),
+  // Use an observer to modify the participants array when the list
+  // of people is modified, and on initialise
+  setParticipants: function () {
+    console.log('hai');
+    this.set('participants', this.get('people').content.copy());
+  }.observes('people.[]').on('init'),
+
+  participants: [],
 
   invalidAmount: false,
 
