@@ -1,7 +1,5 @@
 import DS from 'ember-data';
 
-// import deletesDependentRelationships from '../mixins/deletes-dependent-relationships'
-
 export default DS.Model.extend({
   name: DS.attr('string'),
 
