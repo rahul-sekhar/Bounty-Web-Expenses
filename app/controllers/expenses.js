@@ -19,13 +19,32 @@ export default Ember.Controller.extend({
 
   invalidAmount: false,
 
+  invalidDescription: false,
+
   actions: {
     addExpense: function () {
+      var invalid = false;
+
+      // Reset invalid fields
+      this.set('invalidAmount', false);
+      this.set('invalidDescription', false);
 
       // Ensure that amount is a positive integer
       var amount = parseInt(this.get('amount'), 10);
       if (amount <= 0 || isNaN(amount)) {
         this.set('invalidAmount', true);
+        invalid = true;
+      }
+
+      // Ensure that the description is present
+      var description = this.get('description');
+      if (!description || !description.trim()) {
+        this.set('invalidDescription', true);
+        invalid = true;
+      }
+
+      // Exit the function if we have invalid fields
+      if (invalid) {
         return;
       }
 
@@ -35,6 +54,7 @@ export default Ember.Controller.extend({
 
       // Create a new expense model
       let newExpense = this.store.createRecord('expense', {
+        description: description,
         amount: amount,
         paidBy: paidByModel,
         createdAt: new Date().getTime()
@@ -52,6 +72,7 @@ export default Ember.Controller.extend({
       // Clear inputs
       this.setProperties({
         invalidAmount: false,
+        description: '',
         amount: '',
         participants: this.get('people').content.copy()
       });

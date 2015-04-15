@@ -8,7 +8,8 @@ let adapter;
 if (config.environment === 'test') {
 
   // Load the fixture adapter if we're testing
-  adapter = DS.FixtureAdapter.extend();
+  adapter = DS.FixtureAdapter;
+
 } else {
 
   // For non test-environments, load the firebase adapter

@@ -4,11 +4,16 @@
   </div>
   <div class="panel-body">
     <form>
+      <div {{bind-attr class=':form-group invalidDescription:has-error'}}>
+        <label for="description" class="sr-only">Description</label>
+        {{input type="text" id="description" class="form-control" value=description placeholder="Description"}}
+      </div>
+
       <div {{bind-attr class=':form-group invalidAmount:has-error'}}>
         <label for="amount" class="sr-only">Amount</label>
         <div class="input-group">
           <div class="input-group-addon">Rs.</div>
-          {{input type="number" id="amount" class="amount form-control" value=amount placeholder="Amount"}}
+          {{input type="number" id="amount" class="form-control" value=amount placeholder="Amount"}}
         </div>
       </div>
 
