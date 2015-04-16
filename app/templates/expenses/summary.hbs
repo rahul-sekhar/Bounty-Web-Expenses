@@ -1,7 +1,7 @@
 <h3>Payments pending</h3>
-<ul class="list-unstyled">
+<ul class="list-group">
   {{#each payment in paymentsPending}}
-    {{#payment-pending payment=payment}}{{/payment-pending}}
+    {{#payment-pending payment=payment action='makePayment'}}{{/payment-pending}}
   {{else}}
     <li>All debts are clear</li>
   {{/each}}

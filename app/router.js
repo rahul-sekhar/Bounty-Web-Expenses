@@ -10,5 +10,6 @@ export default Router.map(function() {
   this.route('expenses', function () {
     this.route('summary');
     this.route('list');
+    this.route('payments');
   });
 });

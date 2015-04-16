@@ -1,0 +1,21 @@
+<table class="table payments table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>From</th>
+      <th>To</th>
+      <th>Amount</th>
+      <th class="controls"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {{#each payment in controller}}
+      {{#payment-row payment=payment}}
+      {{/payment-row}}
+    {{else}}
+      <tr>
+        <td colspan="5">No payments made yet</td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
