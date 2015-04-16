@@ -15,6 +15,7 @@
     "firebase": "^2.1.0",
     "bootstrap": "~3.3.4",
     "sinonjs": "~1.14.1",
-    "sinon-qunit": "~2.0.0"
+    "sinon-qunit": "~2.0.0",
+    "ember-cli-moment-shim": "~0.1.0"
   }
 }

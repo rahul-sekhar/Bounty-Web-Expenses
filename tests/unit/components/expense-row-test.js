@@ -3,11 +3,16 @@ import {
   test
 } from 'ember-qunit';
 
+import { initialize } from '../../../initializers/ember-moment';
+
 import Ember from 'ember';
 
 moduleForComponent('expense-row', {
-  // Specify the other units that are required for this test
-  // needs: ['component:foo', 'helper:bar']
+  setup: function (container) {
+    Ember.run(function () {
+      initialize(container);
+    });
+  }
 });
 
 test('it renders', function(assert) {
