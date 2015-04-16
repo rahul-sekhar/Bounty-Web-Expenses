@@ -22,7 +22,7 @@ test('balance computed property', function(assert) {
   assert.equal(model.get('balance'), 0);
 
   // With expenses
-  var person1, person2, expense1, expense2, expense3, expense4;
+  var person1, person2, expense1, expense2, expense3, expense4, payment1, payment2;
   Ember.run(function () {
     person1 = store.createRecord('person', { name: 'Person 1' });
     person2 = store.createRecord('person', { name: 'Person 2' });
@@ -38,9 +38,12 @@ test('balance computed property', function(assert) {
 
     expense4 = store.createRecord('expense', {amount: 15, paidBy: person2});
     expense4.get('participants').addObjects([model, person1, person2]);
+
+    payment1 = store.createRecord('payment', { from: model, to: person1, amount: 50 });
+    payment2 = store.createRecord('payment', { from: person2, to: model, amount: 100 });
   });
 
-  assert.equal(model.get('balance'), 20);
+  assert.equal(model.get('balance'), -30);
 });
 
 test('deletion of dependencies', function(assert) {
@@ -48,7 +51,7 @@ test('deletion of dependencies', function(assert) {
     model = this.subject();
 
   // Setup expenses
-  var person1, person2, expense1, expense2, expense3, expense4;
+  var person1, person2, expense1, expense2, expense3, expense4, payment1, payment2;
   Ember.run(function () {
     person1 = store.createRecord('person', { name: 'Person 1' });
     person2 = store.createRecord('person', { name: 'Person 2' });
@@ -64,6 +67,9 @@ test('deletion of dependencies', function(assert) {
 
     expense4 = store.createRecord('expense', {amount: 15, paidBy: person2});
     expense4.get('participants').addObjects([model, person1, person2]);
+
+    payment1 = store.createRecord('payment', { from: model, to: person1, amount: 50 });
+    payment2 = store.createRecord('payment', { from: person2, to: model, amount: 100 });
   });
 
   Ember.run(function () {
@@ -73,6 +79,10 @@ test('deletion of dependencies', function(assert) {
 
   // The record should be deleted
   assert.ok(model.get('isDeleted'));
+
+  // Payments made and received should get deleted
+  assert.ok(payment1.get('isDeleted'));
+  assert.ok(payment2.get('isDeleted'));
 
   // The expenses paid should be deleted
   assert.ok(expense1.get('isDeleted'));

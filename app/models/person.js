@@ -41,7 +41,7 @@ export default DS.Model.extend({
 
   // Handle dependencies on destruction
   deleteRecord: function () {
-    // Delete any expenses paid by this person
+    // Delete any expenses paid
     this.get('expensesPaid').toArray().forEach(function (item) {
       item.deleteRecord();
       item.save();
@@ -50,6 +50,18 @@ export default DS.Model.extend({
     // Remove this person as a participant from all expenses
     this.get('expensesOwed').toArray().forEach(function (item) {
       item.get('participants').removeObject(this);
+      item.save();
+    });
+
+    // Delete any payments made
+    this.get('paymentsMade').toArray().forEach(function (item) {
+      item.deleteRecord();
+      item.save();
+    });
+
+    // Delete any payments received
+    this.get('paymentsReceived').toArray().forEach(function (item) {
+      item.deleteRecord();
       item.save();
     });
 
