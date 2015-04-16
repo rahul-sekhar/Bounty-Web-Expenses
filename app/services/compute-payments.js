@@ -28,15 +28,15 @@ function BalanceObject (person) {
         from: balanceObject.person,
         to: this.person,
         amount: Math.abs(this.balance)
-      }
+      };
     } else {
       return {
         from: this.person,
         to: balanceObject.person,
         amount: Math.abs(this.balance)
-      }
+      };
     }
-  }
+  };
 
   // Check an array of balance objects and
   // find the first one that can clear this balance object
