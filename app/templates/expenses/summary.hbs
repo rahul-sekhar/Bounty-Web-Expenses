@@ -2,6 +2,8 @@
 <ul class="list-unstyled">
   {{#each payment in paymentsPending}}
     {{#payment-pending payment=payment}}{{/payment-pending}}
+  {{else}}
+    <li>All debts are clear</li>
   {{/each}}
 </ul>
 

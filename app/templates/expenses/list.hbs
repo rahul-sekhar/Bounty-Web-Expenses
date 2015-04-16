@@ -13,6 +13,10 @@
     {{#each expense in controller}}
       {{#expense-row expense=expense}}
       {{/expense-row}}
+    {{else}}
+      <tr>
+        <td colspan="5">No expenses added yet</td>
+      </tr>
     {{/each}}
   </tbody>
 </table>
