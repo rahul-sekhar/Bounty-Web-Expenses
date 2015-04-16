@@ -21,8 +21,8 @@ export default DS.Model.extend({
       balance -= parseInt(expense.get('amount'), 10) / expense.get('participants').length;
     });
 
-    // Return the balance, formatted to two decimal places
-    return balance.toFixed(2);
+    // Return the balance
+    return balance;
   }.property('expensesPaid.@each.amount,expensesOwed.@each.amount'),
 
   // Handle dependencies on destruction

@@ -1,3 +1,11 @@
+<h3>Payments pending</h3>
+<ul class="list-unstyled">
+  {{#each payment in paymentsPending}}
+    {{#payment-pending payment=payment}}{{/payment-pending}}
+  {{/each}}
+</ul>
+
+<h3>Balances</h3>
 <table class="table expenses table-bordered table-hover">
   <thead>
     <tr>
@@ -8,10 +16,8 @@
 
   <tbody>
     {{#each person in model.people}}
-      <tr>
-        <td>{{person.name}}</td>
-        <td>Rs. {{person.balance}}</td>
-      </tr>
+      {{#person-balance person=person}}
+      {{/person-balance}}
     {{/each}}
   </tbody>
 </table>
