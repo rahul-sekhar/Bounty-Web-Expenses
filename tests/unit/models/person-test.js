@@ -6,7 +6,7 @@ import {
 import Ember from 'ember';
 
 moduleForModel('person', {
-  needs: ['model:expense']
+  needs: ['model:expense', 'model:payment']
 });
 
 test('it exists', function(assert) {
